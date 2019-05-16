@@ -8,7 +8,7 @@ default: &default
   adapter: postgresql
   endocding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: db
+#  host: db
   timeout: 5000
   username: depot
   password: depot

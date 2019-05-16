@@ -19,3 +19,23 @@ Product.create!(title: 'Seven Mobile Apps in Seven Weeks',
                       </p>},
                 image_url: 'mutest.jpg',
                 price: 26.00)
+Product.create!(title: 'Sync with the remote.',
+                description:
+                    %{<p>
+                      <em>At my old company, we also had a “no merge commits” policy,
+                      so rebasing was the norm. Here’s a command that fetches from all the remotes,
+                      syncs the remote change from origin, and applies your commits on top of them.
+                      </p>},
+                image_url: 'ahihi.jpeg',
+                price: 50.00)
+Product.create!(title: 'Start a new branch.',
+                description:
+                    %{<p>
+                      <em>Additionally, you can have repo-specific aliases.
+                        Just edit .git/config in the repo where you want to add the alias,
+                        and follow the same syntax. This can be useful if you want to override the “g p”
+                        alias to push to a different remote (for my Heroku apps, for example,
+                        I have my “g p” command push to the Heroku production remote).
+                      </p>},
+                image_url: 'ahuhu.png',
+                price: 100.00)
