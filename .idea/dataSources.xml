@@ -7,5 +7,29 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="Rails depot: test" uuid="8a87e404-a63f-4dcc-8dc1-76e3ba2eef18">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/depot_test</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails depot: development" uuid="60e20c56-0df0-4e59-8c1b-1188ae9234ac">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/depot</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails depot: production" uuid="f5b32076-e6f6-44c8-a53a-6228f05c8a81">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/db/production.sqlite3</jdbc-url>
+    </data-source>
   </component>
 </project>
