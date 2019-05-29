@@ -2,14 +2,13 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   # GET /products
-  # GET /products.json
   def index
     @products = Product.all
   end
 
   # GET /products/1
-  # GET /products/1.json
   def show
+    # Empty action can be deleted.
   end
 
   # GET /products/new
@@ -19,15 +18,13 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    # Empty action can be deleted.
   end
 
   # POST /products
-  # POST /products.json
   def create
     options = {
       html_notice: 'Product was successfully created.',
-      json_render: :show,
-      json_status: :created,
       html_error_action: :new
     }
 
@@ -37,12 +34,9 @@ class ProductsController < ApplicationController
   end
 
   # PATCH/PUT /products/1
-  # PATCH/PUT /products/1.json
   def update
     options = {
       html_notice: 'Product was successfully updated.',
-      json_render: :show,
-      json_status: :ok,
       html_error_action: :edit
     }
     
@@ -52,13 +46,9 @@ class ProductsController < ApplicationController
   end
 
   # DELETE /products/1
-  # DELETE /products/1.json
   def destroy
     @product.destroy
-    respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to products_url, notice: 'Product was successfully destroyed.'
   end
 
   private
@@ -75,16 +65,9 @@ class ProductsController < ApplicationController
 
   def perform_action(options)
     yield
-
-    respond_to do |format|
-      format.html { redirect_to @product, notice: options[:html_notice] }
-      format.json { render options[:json_render], status: options[:json_status], location: @product }
-    end
+    redirect_to @product, notice: options[:html_notice]
   rescue ActiveRecord::RecordInvalid => error
     Rails.logger.error("#{error.message}\n#{error.backtrace.join("\n")}")
-    respond_to do |format|
-      format.html { render options[:html_error_action] }
-      format.json { render json: @product.errors, status: :unprocessable_entity }
-    end
+    render options[:html_error_action]
   end
 end

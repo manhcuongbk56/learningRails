@@ -1,24 +1,25 @@
-# README
+### Learning Rails from the book Agile web development with Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby version: 2.6.3
 
-Things you may want to cover:
+* Rails version: 5.2.3
 
-* Ruby version
+* Database: PostgreSQL
 
-* System dependencies
+* Database Configuration:
 
-* Configuration
+These two environment variables must be set:
+```bash
+export POSTGRES_USERNAME=<your postgres username>
+export POSTGRES_PASSWORD=<your postgres password>
+```
 
-* Database creation
+* Database creation and initialization:
+```bash
+rake db:create db:migrate
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Run spec test:
+```bash
+rspec
+```
