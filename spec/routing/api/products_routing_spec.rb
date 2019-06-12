@@ -19,11 +19,11 @@ RSpec.describe ProductsController, type: :routing do
     end
 
     it 'routes to #update via PATCH' do
-      expect(patch: '/api/products/1').to route_to('api/products#update', :id => '1')
+      expect(patch: '/api/products/1').to route_to('api/products#update', {id: '1', format: :json})
     end
 
     it 'routes to #destroy' do
-      expect(delete: '/apiproducts/1').to route_to('api/products#destroy', :id => '1')
+      expect(delete: '/api/products/1').to route_to('api/products#destroy', {id: '1', format: :json})
     end
   end
 end

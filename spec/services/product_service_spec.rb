@@ -33,7 +33,7 @@ describe ProductService do
     it 'updates product with valid attributes successfully' do
       updated_product = ProductService.update_product!(product, valid_attributes)
       attributes.each do |attr|
-        expect(updated_product.send(attr).to eql(valid_attributes[attr]))
+        expect(updated_product.send(attr)).to eql(valid_attributes[attr])
       end
     end
 
