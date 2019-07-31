@@ -112,6 +112,13 @@ describe Api::ProductsController, type: :controller do
       expect(response.status).to eql(204)
     end
 
+    it "should return error" do
+      line_item = create(:line_item)
+      product = line_item.product
+      expect{
+      delete :destroy, params: {id: product.to_param}, session: valid_session, format: :json
+      }.to change(Product, :count).by(0)
+    end
   end
 
 end

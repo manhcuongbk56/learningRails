@@ -23,39 +23,36 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe ProductsController, type: :controller do
+RSpec.describe CartsController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
-  # Product. As you add validations to Product, be sure to
+  # Cart. As you add validations to Cart, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    {title: 'Controller Title', description: 'Controller Description', image_url: "sexy.jpeg", price: 1 }
+    skip("Add a hash of attributes valid for your model")
   }
 
   let(:invalid_attributes) {
-    {title: 'Controller Title', description: 'Controller Description', image_url: "sex2222y.jpssseg", price: 1 }
+    skip("Add a hash of attributes invalid for your model")
   }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # ProductsController. Be sure to keep this updated too.
+  # CartsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET #index" do
     it "returns a success response" do
+      Cart.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_successful
-    end
-    it "render the index template" do
-      get :index
-      expect(response).to render_template("index")
     end
   end
 
   describe "GET #show" do
     it "returns a success response" do
-      product = Product.create! valid_attributes
-      get :show, params: {id: product.to_param}, session: valid_session
+      cart = Cart.create! valid_attributes
+      get :show, params: {id: cart.to_param}, session: valid_session
       expect(response).to be_successful
     end
   end
@@ -69,29 +66,29 @@ RSpec.describe ProductsController, type: :controller do
 
   describe "GET #edit" do
     it "returns a success response" do
-      product = Product.create! valid_attributes
-      get :edit, params: {id: product.to_param}, session: valid_session
+      cart = Cart.create! valid_attributes
+      get :edit, params: {id: cart.to_param}, session: valid_session
       expect(response).to be_successful
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Product" do
+      it "creates a new Cart" do
         expect {
-          post :create, params: {product: valid_attributes}, session: valid_session
-        }.to change(Product, :count).by(1)
+          post :create, params: {cart: valid_attributes}, session: valid_session
+        }.to change(Cart, :count).by(1)
       end
 
-      it "redirects to the created product" do
-        post :create, params: {product: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Product.last)
+      it "redirects to the created cart" do
+        post :create, params: {cart: valid_attributes}, session: valid_session
+        expect(response).to redirect_to(Cart.last)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {product: invalid_attributes}, session: valid_session
+        post :create, params: {cart: invalid_attributes}, session: valid_session
         expect(response).to be_successful
       end
     end
@@ -100,52 +97,44 @@ RSpec.describe ProductsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        {price: 1000}
+        skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested product" do
-        product = Product.create! valid_attributes
-        put :update, params: {id: product.to_param, product: new_attributes}, session: valid_session
-        product.reload
-        expect(product.price).to eq(1000)
+      it "updates the requested cart" do
+        cart = Cart.create! valid_attributes
+        put :update, params: {id: cart.to_param, cart: new_attributes}, session: valid_session
+        cart.reload
+        skip("Add assertions for updated state")
       end
 
-      it "redirects to the product" do
-        product = Product.create! valid_attributes
-        put :update, params: {id: product.to_param, product: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(product)
+      it "redirects to the cart" do
+        cart = Cart.create! valid_attributes
+        put :update, params: {id: cart.to_param, cart: valid_attributes}, session: valid_session
+        expect(response).to redirect_to(cart)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
-        product = Product.create! valid_attributes
-        put :update, params: {id: product.to_param, product: invalid_attributes}, session: valid_session
+        cart = Cart.create! valid_attributes
+        put :update, params: {id: cart.to_param, cart: invalid_attributes}, session: valid_session
         expect(response).to be_successful
       end
     end
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested product" do
-      product = Product.create! valid_attributes
+    it "destroys the requested cart" do
+      cart = Cart.create! valid_attributes
       expect {
-        delete :destroy, params: {id: product.to_param}, session: valid_session
-      }.to change(Product, :count).by(-1)
+        delete :destroy, params: {id: cart.to_param}, session: valid_session
+      }.to change(Cart, :count).by(-1)
     end
 
-    it "redirects to the products list" do
-      product = Product.create! valid_attributes
-      delete :destroy, params: {id: product.to_param}, session: valid_session
-      expect(response).to redirect_to(products_url)
-    end
-
-    it "can not delete product in cart" do
-      line_item = create(:line_item)
-      product = line_item.product
-      expect {
-        delete :destroy, params: {id: product.to_param}, session: valid_session
-      }.to change(Product, :count).by(0)
+    it "redirects to the carts list" do
+      cart = Cart.create! valid_attributes
+      delete :destroy, params: {id: cart.to_param}, session: valid_session
+      expect(response).to redirect_to(carts_url)
     end
   end
 

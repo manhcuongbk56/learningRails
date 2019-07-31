@@ -1,3 +1,4 @@
+require 'pry'
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
@@ -57,6 +58,7 @@ class ProductsController < ApplicationController
 
     def perform_action(options)
       yield
+      binding.pry
       redirect_to @product, notice: options[:html_notice]
     rescue ActiveRecord::RecordInvalid => error
       Rails.logger.error("#{error.message}\n#{error.backtrace.join("\n")}")
