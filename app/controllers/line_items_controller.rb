@@ -1,17 +1,21 @@
 require 'pry'
 class LineItemsController < ApplicationController
-  before_action :set_line_item, only: [:show, :edit, :update, :destroy]
+  include CurrentCart
+  before_action :set_cart, only: [:create]
+  before_action :set_line_item, only: [:destroy]
 
 
   # POST /line_items
   # POST /line_items.json
   def create
     options = {
-        html_notice: 'Product was successfully created.',
+        html_notice: 'Line item was successfully created.',
         html_error_action: :new
     }
     perform_action(options) do
-      @line_item = LineItemsService.create_line_item!(line_item_params)
+      product = Product.find(params[:product_id])
+      @line_item = @cart.line_items.build(product: product)
+      @line_item.save
     end
   end
 
@@ -37,6 +41,9 @@ class LineItemsController < ApplicationController
 
     def perform_action(option)
       yield
-      redirect_to
+      redirect_to @line_item.cart, notice: option[:html_notice]
+    rescue ActiveRecord::RecordInvalid => error
+      Rails.logger.error("#{error.message}\n#{error.backtrace.join("\n")}")
+      render options[:html_error_action]
     end
 end

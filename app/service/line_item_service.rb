@@ -1,6 +1,8 @@
 class LineItemsService
   class << self
-    def create_line_item!(attributes)
+    def create_line_item!(params)
+      product = Product.find(params[:product_id])
+      @line_item = @cart
       LineItem.create!(params)
     end
 
